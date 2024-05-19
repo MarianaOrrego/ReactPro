@@ -5,6 +5,8 @@ import {
   ProductButtons,
 } from "../components";
 
+import "../styles/custom-styles.css";
+
 const product = {
   id: "1",
   title: "Coffee Mug - Card",
@@ -24,16 +26,16 @@ export const ShoppingPage = () => {
           flexWrap: "wrap",
         }}
       >
-        <ProductCard product={product}>
-          <ProductCard.Image />
-          <ProductCard.Title title={"Hola Mundo"} />
-          <ProductCard.Buttons />
+        <ProductCard product={product} className="bg-dark">
+          <ProductCard.Image className="custom-image" />
+          <ProductCard.Title title={"Hola Mundo"} className="text-white" />
+          <ProductCard.Buttons className="custom-buttons"/>
         </ProductCard>
 
-        <ProductCard product={product}>
-          <ProductImage />
-          <ProductTitle />
-          <ProductButtons />
+        <ProductCard product={product} className="bg-dark">
+          <ProductImage className="custom-image" />
+          <ProductTitle className="text-white" />
+          <ProductButtons className="custom-buttons" />
         </ProductCard>
       </div>
     </div>
