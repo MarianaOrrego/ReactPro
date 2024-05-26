@@ -29,13 +29,26 @@ export const ShoppingPage = () => {
         <ProductCard product={product} className="bg-dark">
           <ProductCard.Image className="custom-image" />
           <ProductCard.Title title={"Hola Mundo"} className="text-white" />
-          <ProductCard.Buttons className="custom-buttons"/>
+          <ProductCard.Buttons className="custom-buttons" />
         </ProductCard>
 
         <ProductCard product={product} className="bg-dark">
           <ProductImage className="custom-image" />
           <ProductTitle className="text-white" />
           <ProductButtons className="custom-buttons" />
+        </ProductCard>
+
+        <ProductCard product={product} style={{ backgroundColor: "#70D1F8" }}>
+          <ProductImage
+            style={{
+              width: "90%",
+              margin: "auto",
+              display: "block",
+              marginTop: "10px",
+            }}
+          />
+          <ProductTitle style={{ fontWeight: "bold", color: "white" }} />
+          <ProductButtons style={{ flex: 1, justifyContent: "center" }} />
         </ProductCard>
       </div>
     </div>

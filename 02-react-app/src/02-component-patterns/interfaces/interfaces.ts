@@ -4,6 +4,7 @@ export interface ProductCardProps {
   product: Product;
   children?: ReactElement | ReactElement[];
   className?: string;
+  style?: React.CSSProperties;
 }
 
 export interface Product {
@@ -28,13 +29,16 @@ export interface ProductCardHOCProps {
 export interface ProductTitleProps {
   title?: string;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 export interface ProductImageProps {
   img?: string;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 export interface ProductoButtonProps {
   className?: string;
+  style?: React.CSSProperties;
 }
