@@ -1,16 +1,26 @@
 import { ReactElement } from "react";
 
+export interface onChangeArgs {
+  product: Product;
+  quantity: number;
+}
+
 export interface ProductCardProps {
   product: Product;
   children?: ReactElement | ReactElement[];
   className?: string;
   style?: React.CSSProperties;
+  onChange?: (args: onChangeArgs) => void;
 }
 
 export interface Product {
   id: string;
   title: string;
   img?: string;
+}
+
+export interface ProductInCard extends Product {
+  quantity: number;
 }
 
 export interface ProductContextProps {
