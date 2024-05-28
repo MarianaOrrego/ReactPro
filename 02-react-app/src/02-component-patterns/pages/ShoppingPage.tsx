@@ -64,6 +64,7 @@ export const ShoppingPage = () => {
             product={product}
             className="bg-dark"
             onChange={onProductChange}
+            value={shoppingCart[product.id]?.quantity || 0}
           >
             <ProductCard.Image className="custom-image" />
             <ProductCard.Title title={"Hola Mundo"} className="text-white" />
@@ -71,35 +72,21 @@ export const ShoppingPage = () => {
           </ProductCard>
         ))}
       </div>
+
       <div className="shopping-cart">
-        <ProductCard
-          product={product}
-          className="bg-dark"
-          onChange={onProductChange}
-          style={{ width: "100px" }}
-        >
-          <ProductCard.Image className="custom-image" />
-          <ProductCard.Buttons className="custom-buttons" />
-        </ProductCard>
-        <ProductCard
-          product={product2}
-          className="bg-dark"
-          onChange={onProductChange}
-          style={{ width: "100px" }}
-        >
-          <ProductCard.Image className="custom-image" />
-          <ProductCard.Buttons className="custom-buttons" />
-        </ProductCard>
-      </div>
-      <div>
-        <h2>Shopping Cart</h2>
-        <ul>
-          {Object.values(shoppingCart).map((product) => (
-            <li key={product.id}>
-              {product.title} - {product.quantity}
-            </li>
-          ))}
-        </ul>
+        {Object.entries(shoppingCart).map(([key, product]) => (
+          <ProductCard
+            key={key}
+            product={product}
+            className="bg-dark"
+            onChange={onProductChange}
+            value={product.quantity}
+            style={{ width: "100px" }}
+          >
+            <ProductCard.Image className="custom-image" />
+            <ProductCard.Buttons className="custom-buttons" />
+          </ProductCard>
+        ))}
       </div>
     </div>
   );

@@ -9,8 +9,9 @@ export interface ProductCardProps {
   product: Product;
   children?: ReactElement | ReactElement[];
   className?: string;
-  style?: React.CSSProperties;
   onChange?: (args: onChangeArgs) => void;
+  value?: number;
+  style?: React.CSSProperties;
 }
 
 export interface Product {
