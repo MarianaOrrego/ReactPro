@@ -21,7 +21,12 @@ export const useProduct = ({
   const isMounted = useRef(false);
 
   const increaseBy = (value: number) => {
-    const newValue = Math.max(counter + value, 0);
+    let newValue = Math.max(counter + value, 0);
+
+    if (initialValues?.maxQuantity) {
+      newValue = Math.min(newValue, initialValues.maxQuantity);
+    }
+
     setCounter(newValue);
 
     onChange && onChange({ quantity: newValue, product });
@@ -40,5 +45,6 @@ export const useProduct = ({
   return {
     counter,
     increaseBy,
+    maxQuantity: initialValues?.maxQuantity,
   };
 };

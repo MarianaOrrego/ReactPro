@@ -7,7 +7,7 @@ export interface onChangeArgs {
 
 export interface ProductCardProps {
   product: Product;
-  children?: ReactElement | ReactElement[];
+  children?: () => JSX.Element;
   className?: string;
   onChange?: (args: onChangeArgs) => void;
   value?: number;
@@ -15,7 +15,7 @@ export interface ProductCardProps {
   initialValues?: InitialValues;
 }
 
-export interface InitialValues{
+export interface InitialValues {
   quantity?: number;
   maxQuantity?: number;
 }
@@ -32,8 +32,9 @@ export interface ProductInCard extends Product {
 
 export interface ProductContextProps {
   counter: number;
-  increaseBy: (value: number) => void;
+  maxQuantity?: number;
   product: Product;
+  increaseBy: (value: number) => void;
 }
 
 export interface ProductCardHOCProps {
