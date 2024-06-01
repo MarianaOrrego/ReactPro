@@ -7,7 +7,7 @@ export interface onChangeArgs {
 
 export interface ProductCardProps {
   product: Product;
-  children?: () => JSX.Element;
+  children?: (args: ProductCardHandlers) => JSX.Element;
   className?: string;
   onChange?: (args: onChangeArgs) => void;
   value?: number;
@@ -59,4 +59,14 @@ export interface ProductImageProps {
 export interface ProductoButtonProps {
   className?: string;
   style?: React.CSSProperties;
+}
+
+export interface ProductCardHandlers {
+  quantity: number;
+  isMaxQuantityReached: boolean;
+  maxQuantity?: number;
+  product: Product;
+
+  increaseBy: (value: number) => void;
+  reset: () => void;
 }
