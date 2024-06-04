@@ -38,7 +38,7 @@ export const ProductCard = ({
       }}
     >
       <div className={`${styles.productCard} ${className}`} style={style}>
-        {children({
+        {children && children({
           quantity: counter,
           isMaxQuantityReached,
           maxQuantity: initialValues?.maxQuantity,
