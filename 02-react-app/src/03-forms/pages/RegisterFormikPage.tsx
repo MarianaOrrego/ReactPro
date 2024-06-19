@@ -1,82 +1,66 @@
+import { useFormik } from "formik";
+import * as Yup from "yup";
+
 import "../styles/styles.css";
-import { useForm } from "../hooks/useForm";
 
 export const RegisterFormikPage = () => {
-  const {
-    formData,
-    handleInputChange,
-    name,
-    email,
-    password,
-    repeatPassword,
-    resetForm,
-    isValidEmail,
-  } = useForm({
-    name: "",
-    email: "",
-    password: "",
-    repeatPassword: "",
+  const { handleSubmit, errors, touched, getFieldProps, handleReset } = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      password: "",
+      repeatPassword: "",
+    },
+    onSubmit: (values) => {
+      console.log(values);
+    },
+    validationSchema: Yup.object({
+      name: Yup.string()
+        .required("Name is required")
+        .max(15, "Name must be 15 characters or less")
+        .min(2, "Name must be 2 characters or more"),
+      email: Yup.string()
+        .required("Email is required")
+        .email("Invalid email format"),
+      password: Yup.string()
+        .required("Password is required")
+        .min(6, "Password must be 6 characters or more"),
+      repeatPassword: Yup.string()
+        .required("Repeat password is required")
+        .oneOf([Yup.ref("password")], "Passwords must match"),
+    }),
   });
-
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(formData);
-  };
 
   return (
     <div>
       <h1>Register page</h1>
-      <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          placeholder="Name"
-          name="name"
-          value={name}
-          onChange={handleInputChange}
-          className={`${name.trim().length <= 0 && "has-error"}`}
-        />
-        {name.trim().length <= 0 && <span>Name is required</span>}
+      <form onSubmit={handleSubmit} noValidate>
+        <input type="text" placeholder="Name" {...getFieldProps("name")} />
+        {touched.name && errors.name && <span>{errors.name}</span>}
+
         <input
           type="text"
           placeholder="Email"
-          name="email"
-          value={email}
-          onChange={handleInputChange}
-          className={`${!isValidEmail(email) && "has-error"}`}
+          {...getFieldProps("email")}
         />
-        {!isValidEmail(email) && <span>Email is invalid</span>}
+        {touched.email && errors.email && <span>{errors.email}</span>}
         <input
           type="password"
           placeholder="Password"
-          name="password"
-          value={password}
-          onChange={handleInputChange}
-          className={`${password.trim().length <= 0 && "has-error"}`}
+          {...getFieldProps("password")}
         />
-        {password.trim().length <= 0 && <span>Password is required</span>}
-        {password.trim().length > 0 && password.trim().length < 6 && (
-          <span>Password must be at least 6 characters</span>
-        )}
+        {touched.password && errors.password && <span>{errors.password}</span>}
         <input
           type="password"
           placeholder="Repeat password"
-          name="repeatPassword"
-          value={repeatPassword}
-          onChange={handleInputChange}
-          className={`${
-            repeatPassword !== password &&
-            "has-error"
-          }`}
+          {...getFieldProps("repeatPassword")}
         />
-        {repeatPassword.trim().length <= 0 && (
-          <span>Repeat password is required</span>
-        )}
-        {repeatPassword.length > 0 && repeatPassword !== password && (
-          <span>Passwords do not match</span>
+        {touched.repeatPassword && errors.repeatPassword && (
+          <span>{errors.repeatPassword}</span>
         )}
 
         <button type="submit">Create</button>
-        <button type="button" onClick={resetForm}>
+        <button type="button" onClick={handleReset}>
           Reset
         </button>
       </form>
