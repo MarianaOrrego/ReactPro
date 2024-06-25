@@ -9,7 +9,7 @@
   {
     "type": "input",
     "name": "lastName",
-    "placeholder": "Garcia",
+    "placeholder": "Orrego",
     "label": "Last Name",
     "value": ""
   },
@@ -19,5 +19,17 @@
     "placeholder": "Email",
     "label": "Email",
     "value": ""
+  },
+  {
+    "type": "select",
+    "name": "favoriteGame",
+    "label": "Favorite Game",
+    "value": "",
+    "options": [
+      { "id": 1, "label": "League of Legends" },
+      { "id": 2, "label": "Dota 2" },
+      { "id": 3, "label": "Counter Strike" },
+      { "id": 4, "label": "Overwatch" }
+    ]
   }
 ]
